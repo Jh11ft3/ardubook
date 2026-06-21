@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 【修改标记1】浏览器标签页标题 -->
+    <title>ArduBook OS - 文件下载中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#9d4edd',
+                        darkbg: '#050508',
+                        glass: 'rgba(255,255,255,0.06)',
+                        glassborder: 'rgba(255,255,255,0.12)'
+                    },
+                    backdropBlur: {
+                        xl: '16px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            /* 液态玻璃核心样式，不需要改动 */
+            .glass-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(18px);
+                -webkit-backdrop-filter: blur(18px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+                transition: all 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+            }
+            .glass-card:hover {
+                background: rgba(255, 255, 255, 0.09);
+                border-color: rgba(255, 255, 255, 0.18);
+                transform: translateY(-6px);
+                box-shadow: 0 12px 40px 0 rgba(157, 78, 221, 0.2);
+            }
+            .download-btn {
+                background: linear-gradient(135deg, #7b2cbf, #9d4edd);
+                transition: all 0.3s ease;
+            }
+            .download-btn:hover {
+                background: linear-gradient(135deg, #9d4edd, #c77dff);
+                transform: scale(1.03);
+                box-shadow: 0 0 20px rgba(157, 78, 221, 0.4);
+            }
+            .bg-flow {
+                background: linear-gradient(-45deg, #0a0a12, #100c1a, #060810, #020205);
+                background-size: 400% 400%;
+                animation: gradientShift 16s ease infinite;
+            }
+            @keyframes gradientShift {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+            .fade-in {
+                animation: fadeIn 1s ease-out forwards;
+                opacity: 0;
+            }
+            @keyframes fadeIn {
+                to { opacity: 1; }
+            }
+            .delay-1 { animation-delay: 0.2s; }
+            .delay-2 { animation-delay: 0.4s; }
+            .delay-3 { animation-delay: 0.6s; }
+            .delay-4 { animation-delay: 0.8s; }
+            /* 文本下载链接样式 */
+            .text-link {
+                color: #c77dff;
+                text-decoration: underline;
+                transition: color 0.2s ease;
+            }
+            .text-link:hover {
+                color: #9d4edd;
+            }
+        }
+    </style>
+</head>
+<body class="bg-flow min-h-screen text-white font-sans p-6 md:p-12">
+    <div class="max-w-4xl mx-auto">
+        <!-- 【修改标记2】顶部Logo大图区域 -->
+        <div class="glass-card rounded-3xl p-8 md:p-12 mb-10 fade-in">
+            <div class="w-full rounded-2xl overflow-hidden bg-black">
+                <!-- === 相对路径引用图片：把你的图片重命名为 cover.png 和html同目录 === -->
+                <img 
+                    src="./cover.png" 
+                    alt="ArduBook OS" 
+                    class="w-full object-contain"
+                >
+            </div>
+            <!-- 【修改标记3】页面主大标题 -->
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-center mt-6 tracking-wide">
+                ArduBook OS
+            </h1>
+            <!-- 【修改标记4】标题下方副标题描述 -->
+            <p class="text-gray-300 text-center mt-2 text-lg">Open-ArduBook 配套文件下载中心</p>
+        </div>
+
+        <!-- 四个文件下载卡片区域 -->
+        <div class="space-y-6">
+            <!-- ========== 第一个下载卡片：Arduino IDE（改为文字链接，无按钮） ========== -->
+            <div class="glass-card rounded-2xl p-8 fade-in delay-1">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold flex items-center gap-3">
+                            <i class="fa fa-microchip text-primary text-xl"></i>
+                            Arduino IDE 官方安装包
+                        </h2>
+                        <p class="text-gray-400 mt-2">原版无修改，遵循AGPLv3开源协议 | 官方源码：https://github.com/arduino/arduino-ide</p>
+                        <p class="text-gray-500 text-sm mt-1">版权归属 Arduino Original Team</p>
+                        <!-- 【修改标记】自行填写href下载地址 -->
+                        <p class="mt-3">下载地址：<a href="./ArduinoIDE.zip" download class="text-link">点击获取 Arduino IDE 安装包</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 新增第四个卡片：HZK16 字库文件（纯文字链接） ========== -->
+            <div class="glass-card rounded-2xl p-8 fade-in delay-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold flex items-center gap-3">
+                            <i class="fa fa-font text-primary text-xl"></i>
+                            HZK16 点阵中文字库
+                        </h2>
+                        <p class="text-gray-400 mt-2">16*16国标简体点阵字库，适用于OLED、LCD单片机屏幕渲染</p>
+                        <p class="text-gray-500 text-sm mt-1">开源免费字库，仅用于嵌入式设备开发</p>
+                        <!-- 【修改标记】自行填写HZK16的下载链接 -->
+                        <p class="mt-3">下载地址：<a href="./HZK16.bin" download class="text-link">点击获取 HZK16 字库文件</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== 第二个下载卡片：ArduBook OS 配套文档（保留原有按钮） ========== -->
+            <div class="glass-card rounded-2xl p-8 fade-in delay-2">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold flex items-center gap-3">
+                            <i class="fa fa-file-text-o text-primary text-xl"></i>
+                            ArduBook OS 配套文档
+                        </h2>
+                        <p class="text-gray-400 mt-2">开发手册、硬件接线说明、使用教程合集</p>
+                        <p class="text-gray-500 text-sm mt-1">由 Open-ArduBook 项目组整理发布</p>
+                    </div>
+                    <a href="./ArduBook-Docs.pdf" class="download-btn px-8 py-3 rounded-xl text-white font-medium whitespace-nowrap" download>
+                        <i class="fa fa-download mr-2"></i>下载文档
+                    </a>
+                </div>
+            </div>
+
+            <!-- ========== 第三个下载卡片：ArduBook OS 扩展资源包（保留原有按钮） ========== -->
+            <div class="glass-card rounded-2xl p-8 fade-in delay-3">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                        <h2 class="text-2xl font-semibold flex items-center gap-3">
+                            <i class="fa fa-cubes text-primary text-xl"></i>
+                            ArduBook OS 扩展资源包
+                        </h2>
+                        <p class="text-gray-400 mt-2">驱动库、示例工程、界面主题、工具脚本</p>
+                        <p class="text-gray-500 text-sm mt-1">开源协议 MIT，可自由二次修改分发</p>
+                    </div>
+                    <a href="./ArduBook-Res.zip" class="download-btn px-8 py-3 rounded-xl text-white font-medium whitespace-nowrap" download>
+                        <i class="fa fa-download mr-2"></i>下载资源
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部授权与版权声明区域 -->
+        <div class="glass-card rounded-2xl p-8 mt-12 border-l-4 border-primary">
+            <h3 class="text-xl font-semibold mb-4">授权与版权说明</h3>
+            <ul class="text-gray-300 space-y-3 text-sm md:text-base">
+                <li>✅ 本页面全部资源分发<strong>已获得原作者 & SR思锐开发者团队正式授权</strong></li>
+                <li>📄 Arduino IDE 软件：遵循 AGPLv3 开源许可，文件为官方原版未修改，商标归Arduino团队所有</li>
+                <li>📁 HZK16点阵字库：公共开源字库，无版权限制，仅限个人嵌入式学习使用</li>
+                <li>📦 ArduBook OS 相关衍生资源：归属 Open-ArduBook 开源项目，仅用于个人学习交流</li>
+                <li>⚠️ 禁止私自篡改文件、捆绑恶意软件、商用售卖本页面提供的全部资源</li>
+            </ul>
+            <div class="mt-6 pt-6 border-t border-glassborder text-center text-gray-500 text-sm">
+                Powered by Open-ArduBook | SR思锐开发者团队 © 2026 All Rights Reserved
+            </div>
+        </div>
+    </div>
+</body>
+</html>
